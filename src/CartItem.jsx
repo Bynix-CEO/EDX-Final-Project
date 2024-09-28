@@ -17,8 +17,7 @@ const CartItem = ({ onContinueShopping }) => {
       .toFixed(2);
   };
 
-  const handleContinueShopping = (e) => {
-    e.preventDefault();
+  const handleContinueShopping = () => {
     if (onContinueShopping) {
       onContinueShopping();
     }
@@ -94,7 +93,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button
           className="get-started-button"
-          onClick={(e) => handleContinueShopping(e)}
+          onClick={() => handleContinueShopping}
         >
           Continue Shopping
         </button>
