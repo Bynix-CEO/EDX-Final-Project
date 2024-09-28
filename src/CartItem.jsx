@@ -7,17 +7,20 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart
-      .reduce((total, item) => total + item.cost * item.quantity, 0)
+      .reduce((total, item) => {
+        const itemCost = parseFloat(item.cost) || 0;
+        const itemQuantity = parseInt(item.quantity, 10) || 0;
+        return total + itemCost * itemQuantity;
+      }, 0)
       .toFixed(2);
   };
 
   const handleContinueShopping = (e) => {
     e.preventDefault();
     if (onContinueShopping) {
-      handleContinueShopping();
+      onContinueShopping();
     }
   };
 
